@@ -40,12 +40,20 @@ public class DataBaseConfiguration {
 		SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
 		sqlSessionFactoryBean.setDataSource(datasource);
 		sqlSessionFactoryBean.setMapperLocations(
-				applicationContext.getResources("classpath*:/mapper/**/sql-*.xml")
+					applicationContext.getResources("classpath*:/mapper/**/sql-*.xml")
 				);
-		
+		// Mybatis 설정 추가
+		sqlSessionFactoryBean.setConfiguration(mybatisConfig());
 		return sqlSessionFactoryBean.getObject();
 	}
 	
+	@Bean
+	@ConfigurationProperties(prefix = "mybatis.configuration")
+	public org.apache.ibatis.session.Configuration mybatisConfig() {
+	
+		return new org.apache.ibatis.session.Configuration();
+	}
+
 	@Bean
 	public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactory) {
 		return new SqlSessionTemplate(sqlSessionFactory);  
