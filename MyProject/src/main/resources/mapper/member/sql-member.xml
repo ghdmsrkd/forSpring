@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.inhatc.spring.member.mapper.MemberMapper">
+	
+	<!-- 게시글 전체 리스트 가져오기 -->
+	<select id="memberList" resultType="kr.inhatc.spring.member.dto.MemberDto">
+		SELECT member_id, name, role, TO_CHAR(join_date, 'YYYY-MM-DD') AS join_date
+		FROM MEMBER
+		WHERE enabled = 'Y'
+		ORDER BY join_date DESC
+	</select>
+	
+	<!-- 게시글 디테일 불러오기 -->
+	<select id="memberDetail" parameterType="string"  resultType="kr.inhatc.spring.member.dto.MemberDto">
+		SELECT member_id, email, enabled, name, pw, role, 
+			TO_CHAR(join_date, 'YYYY-MM-DD') AS join_date
+		FROM MEMBER
+		WHERE member_id = #{memberId} and enabled = 'Y'
+	</select>
+	
+	<insert id="memberInsert" parameterType="kr.inhatc.spring.member.dto.MemberDto">	
+		INSERT INTO MEMBER
+			(member_id, email, name, pw, role)
+			VALUES(#{memberId}, #{email}, #{name}, #{pw}, #{role})
+	</insert>
+
+
+
+
+
+
+
+
+
+</mapper>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+
+<div class="container">
+		<h1> 사용자 리스트</h1>
+		<a href="/user/userInsert" class="btn btn-primary">사용자등록</a>
+		<table class="table table-striped">
+			<colgroup>
+				<col width="10%"/>
+				<col width="10%"/>
+				<col width="20%"/>
+				<col width="20%"/>
+				<col width="20%"/>
+				<col width="20%"/>
+			</colgroup>
+			<thead>
+				<th scope="col">아이디</th>
+				<th scope="col">패스워드</th>
+				<th scope="col">이름</th>
+				<th scope="col">이메일</th>
+				<th scope="col">권한</th>
+				<th scope="col">가입일</th>
+			</thead>
+			<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+				<td>
+					<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text="${vo.id}"></a>
+				</td>
+				
+				<td th:text="${vo.pw}"></td>
+				<td th:text="${vo.name}"></td>
+				<td th:text="${vo.email}"></td>
+				<td th:text="${vo.role}"></td>
+				<td th:text="${vo.joinDate}"></td>
+			</tr>
+			<tr th:unless="${#lists.size(list)} >0">
+				<td colspan="6" class="text-center">조회된 결과가 없습니다.</td>
+			</tr>
+		</table>
+		
+	</div>
+
+</div>
+</html>
+

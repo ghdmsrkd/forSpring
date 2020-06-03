@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">  
+  <link th:href="@{/assets/css/saidaVideo.css}" rel="stylesheet" />
+  
+</head>
+
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+
+
+</th:block>
+
+<div layout:fragment="content">
+	<!-- 메인 컨텐츠-->
+	<div class="main main-raised">
+		<div class="container">
+			<div class="section text-center">
+
+				<!-- 모달 버튼 테스트 용 
+		<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+		  Launch demo modal
+		</button> -->
+
+				<div class="row">
+					<div class="col-md-8 ml-auto mr-auto">
+						<h2 class="title">머신러닝 소개</h2>
+						<h5 class="description">인공지능(영어: artificial intelligence 혹은
+							machine intelligence)은 인간의 지능을 갖고 있는 기능을 갖춘 컴퓨터 시스템이며, 인간의 지능을 기계
+							등에 인공적으로 시연(구현)한 것이다. 일반적으로 범용 컴퓨터에 적용한다고 가정한다. 이 용어는 또한 그와 같은
+							지능을 만들 수 있는 방법론이나 실현 가능성 등을 연구하는 과학 분야를 지칭하기도 한다.</h5>
+					</div>
+				</div>
+
+				<iframe width="560" height="315"
+					src="https://www.youtube.com/embed/mqaATsYP6j0" frameborder="0"
+					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+					allowfullscreen></iframe>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	
+	<!-- Modal -->
+	<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+	  <div class="modal-dialog modal-dialog-centered" role="document">
+	    <div class="modal-content">
+	      
+	      <div class="modal-header">
+	        <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	          <span aria-hidden="true">&times;</span>
+	        </button>
+	      </div>
+	      <div class="modal-body">
+	        123123123
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+	        <button type="button" class="btn btn-primary">Save changes</button>
+	      </div>
+	      
+	    </div>
+	  </div>
+	</div>
+</div>
+</html>

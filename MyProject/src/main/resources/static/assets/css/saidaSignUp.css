@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+.con-card{
+	max-width: 100%;
+}
+
+.card{
+	width: 500px;	
+	padding-left: 5px;
+}
+
+.page-header{
+  height: 120vh !important;
+  
+}

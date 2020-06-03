@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>게시판 리스트</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+  <h1>회원 리스트</h1>
+	<a href ="/member/memberWrite" class="btn btn-primary">가입하기</a>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>아이디</th>
+        <th>이름</th>
+        <th>권한</th>
+        <th>가입일자</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+        <td th:text="${vo.memberId}"></td>
+        <td class="title">
+        	<a href="/member/memberDetail?memberId=" th:attrappend="href=${vo.memberId}" th:text="${vo.name}"></a>
+        </td>
+        
+        <td th:text="${vo.role}"></td>
+        <td th:text="${vo.joinDate}"></td>
+      </tr>
+      <tr th:unless="${#lists.size(list)} > 0">
+      	<td colspan="4">죄회된 결과가 없습니다.</td>
+      
+      </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+</html>

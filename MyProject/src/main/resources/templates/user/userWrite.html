@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+	<div class="container">
+		<form id ="frm" name ="frm" method="POST" action="/user/userInsert">
+			<h1> 사용자 등록 </h1>
+			<table class="table table-striped">
+				
+				<tr>
+					
+					<td >아이디</td>
+					<td><input class="form-control" type="text" id ="id" name ="id" style="width : 300px"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>패스워드</td>
+					<td><input class="form-control" type="text" id ="pw" name ="pw" style="width : 300px"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>이름</td>
+					<td><input class="form-control" type="text" id ="name" name ="name" style="width : 300px"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>이메일</td>
+					<td><input class="form-control" type="text" id ="email" name ="email" style="width : 300px"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>권한</td>
+					<td><input class="form-control" type="text" id ="role" name ="role" style="width : 300px"></td>
+					
+				</tr>
+			</table>
+			<input type = "submit" id = "submit" value = "저장" class="btn  btn-primary " >
+			<a href="/user/userList" class="btn btn-success">목록으로</a>
+		</form>
+		
+	</div>
+
+</div>
+</html>

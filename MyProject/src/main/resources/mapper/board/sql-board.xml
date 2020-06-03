@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.inhatc.spring.board.mapper.BoardMapper">
+	
+	<!-- 게시글 전체 리스트 가져오기 -->
+	<select id="boardList" resultType="kr.inhatc.spring.board.dto.BoardDto">
+		SELECT board_idx, title, hit_cnt, 
+			TO_CHAR(create_datetime, 'YYYY-MM-DD') AS create_datetime
+		FROM T_BOARD
+		WHERE delete_yn = 'N'
+		ORDER BY board_idx DESC
+	</select>
+	
+	<!-- 게시판 글 INSERT하기 -->
+	<insert id="boardInsert" parameterType="kr.inhatc.spring.board.dto.BoardDto">
+		
+		<!--시퀀스 가져오기-->
+		<selectKey keyProperty="boardIdx" resultType="int" order="BEFORE">
+			SELECT board_seq.nextval From DUAL
+		</selectKey>
+		
+		INSERT INTO HR.T_BOARD
+			(BOARD_IDX, TITLE, CONTENTS, CREATE_DATETIME, CREATEOR_ID)
+			VALUES(#{boardIdx}, #{title}, #{contents}, SYSDATE , 'admin')
+	</insert>
+	
+	<!-- 게시글 디테일 불러오기 -->
+	<select id="boardDetail" parameterType="int"  resultType="kr.inhatc.spring.board.dto.BoardDto">
+		SELECT board_idx, title, contents, hit_cnt, 
+			TO_CHAR(create_datetime, 'YYYY-MM-DD') AS create_datetime, createor_id
+		FROM T_BOARD
+		WHERE BOARD_IDX = #{boardIdx} and delete_yn = 'N'
+	</select>
+	
+	<!-- 글 내용 수정 -->
+	<update id="boardUpdate" parameterType="kr.inhatc.spring.board.dto.BoardDto">
+		UPDATE t_board
+		SET title = #{title},
+			contents = #{contents},
+			create_datetime = sysdate,
+			createor_id = 'admin'
+			
+		where board_idx = #{boardIdx}
+	</update>
+	
+	<!-- 조회수 증가 -->
+	<update id="updateHit" parameterType="int">
+		UPDATE t_board
+		set hit_cnt = hit_cnt + 1
+		where board_idx = #{boardIdx}
+	</update>
+	
+	
+	<!-- 글 삭제 -->
+	
+	<delete id="boardDelete" parameterType="kr.inhatc.spring.board.dto.BoardDto">
+		DELETE FROM t_board
+		WHERE board_idx = #{boardIdx}
+	</delete>
+	
+	<!-- 게시판 글의 사진 INSERT하기 -->
+	<insert id="boardFileInsert" parameterType="kr.inhatc.spring.board.dto.FileDTO">
+
+		INSERT INTO HR.T_FILE
+			(IDX, 
+			BOARD_IDX, 
+			ORIGINAL_FILE_NAME, 
+			STORED_FILE_PATH, 
+			FILE_SIZE, 
+			CREATEOR_ID)
+		select file_seq.nextval, A.* from(
+			<foreach collection="list" item="item" separator="UNION ALL">
+				select #{item.boardIdx} as board_idx,
+						#{item.originalFileName} as original_file_name,
+						#{item.storedFilePath} as stored_file_path,
+						#{item.fileSize} as file_size,
+						'admin'
+				from dual
+			</foreach>	)A
+	</insert>
+	
+	<select id="selectBoardFileList" parameterType="int" resultType="kr.inhatc.spring.board.dto.FileDTO">
+		SELECT idx, board_idx, original_file_name, ROUND(file_size/1024) as file_size
+		FROM t_file
+		WHERE board_idx = #{boardIdx} AND deleted_yn = 'N'
+	
+	</select>
+	
+	<select id="selectFileInfo" parameterType="map" resultType="kr.inhatc.spring.board.dto.FileDTO">
+		SELECT original_file_name, stored_file_path, file_size
+		FROM t_file
+		WHERE idx = #{idx} AND board_idx = #{boardIdx} AND deleted_yn = 'N'
+	</select>
+	
+</mapper>
+

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+	<div class="container">
+		<form id="frm" role="form" th:method="POST" th:action="'/user/userUpdate/'+${user.id}">
+			<h2> 사용자 등록 </h2>
+			<table class="table table-striped">
+				
+				<tr>
+					
+					<td>아이디</td>
+					<td><input class="form-control" type="text" id ="id" name ="id" th:value="${user.id}" disabled="disabled"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>패스워드</td>
+					<td><input class="form-control" type="text" id ="pw" name ="pw"th:value="${user.pw}"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>이름</td>
+					<td><input class="form-control" type="text" id ="name" name ="name"th:value="${user.name}"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>이메일</td>
+					<td><input class="form-control" type="text" id ="email" name ="email"th:value="${user.email}"></td>
+					
+				</tr>
+				<tr>
+					
+					<td>권한</td>
+					<td><input class="form-control" type="text" id ="role" name ="role"th:value="${user.role}"></td>
+					
+				</tr>
+			</table>
+			<a href="/user/userList" class="btn btn-primary">목록으로</a>
+			<input type = "submit" id = "submit" value = "수정하기" class="btn btn-warning" >			
+			<a href="/user/userDelete/" th:attrappend="href=${user.id}" class="btn btn-danger">삭제하기</a>
+
+		</form>
+			
+	</div>
+
+</div>
+</html>

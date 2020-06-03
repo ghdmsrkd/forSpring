@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>게시판 상세</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+
+<div class="container">
+		<h1>게시판 상세</h1>
+		<form action="" id="frm" name="frm" method="POST">
+			<table class="table table-striped">
+				<colgroup>
+					<col width = "15%">
+					<col width = "35%">
+					<col width = "15%">
+					<col width = "35%">
+				</colgroup>
+				<!-- <caption>게시글 상세내용</caption>   -->
+				<tbody>
+					<tr>
+						<th scope="row">아이디</td>
+						<td th:text="${member.memberId}"></td>
+						<th scope="row">이메일</td>
+						<td th:text="${member.email}"></td>
+					</tr>
+					<tr>
+						<th scope="row">활성여부</td>
+						<td th:text="${member.enabled}"></td>
+						<th scope="row">가입일자</td>
+						<td th:text="${member.joinDate}"></td>
+					</tr>
+					<tr>
+						<th scope="row">페스워드</td>
+						<td th:text="${member.pw}"></td>
+						<th scope="row">권한</td>
+						<td th:text="${member.role}"></td>
+					</tr>
+					<tr>
+						<th scope="row">이름</td>
+						<td colspan="3">
+							<input class="form-control" type="text" id="title" name="title" th:value="${member.name}">
+						</td>
+					</tr>
+					
+					
+				</tbody>
+			</table>
+			
+			<input type="hidden" name="memberId" th:value="${member.memberId}">
+		</form>
+		<!-- 
+		<div class="file_list">
+			<a th:each="file : ${member.fileList}"
+				th:text="|${file.originalFileName}(${file.fileSize}kb)|"
+				th:href="@{/member/downloadMemberFile(idx=${file.idx}, bomemberx=${file.memberId})}"
+				></a>
+		
+		</div>
+		 -->
+		<input type="button" id="list" class="btn btn-primary" value="목록으로">
+		<input type="button" id="edit" class="btn btn-warning" value="수정하기">
+		<input type="button" id="delete" class="btn btn-info" value="삭제하기">
+	</div>
+	
+	<script
+  src="https://code.jquery.com/jquery-3.5.0.slim.min.js"
+  integrity="sha256-MlusDLJIP1GRgLrOflUQtshyP0TwT/RHXsI1wWGnQhs="
+  crossorigin="anonymous"></script>
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$("#list").on("click", function(){
+				location.href = "/member/memberList"
+			});
+			
+			$("#edit").on("click", function(){
+				var frm = $("#frm")[0];
+				frm.action = "/member/memberUpdate";
+				frm.submit()
+			});
+			
+			$("#delete").on("click", function(){
+				var frm = $("#frm")[0];
+				frm.action = "/member/memberDelete";
+				frm.submit()
+			});
+		});
+	</script>
+</body>
+</html>

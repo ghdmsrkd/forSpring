@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+</th:block>
+
+<div layout:fragment="content">
+	
+	<div class="container">
+		<h1>게시판 작성</h1>
+		<form action="boardInsert" name="frm" method="POST" enctype="multipart/form-data">
+			
+			<label for="title">글제목:</label>
+  			<input type="text" class="form-control" id="title" name="title">
+  			
+  			<label for="title">글내용:</label>
+			<textarea class="form-control" rows="5" id="contents" name="contents"></textarea>
+			
+			<input type="file" id="files" name="files" multiple="multiple">
+			<input type="submit" class="btn btn-primary" value="저장">
+		</form>
+	</div>
+
+</div>
+</html>
