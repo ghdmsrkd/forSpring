@@ -9,7 +9,6 @@ import kr.inhatc.spring.user.entity.Users;
 
 @Repository
 public interface UserRepository extends CrudRepository<Users, String> {
-
 	List<Users> findAllByOrderByIdDesc();
 
 	

@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.inhatc.spring.board.dto.BoardDto;
-import kr.inhatc.spring.board.service.BoardService;
+
 import kr.inhatc.spring.user.entity.Users;
 import kr.inhatc.spring.user.service.UserService;
 

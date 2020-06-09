@@ -1,7 +1,5 @@
-.navbar{
-	
-}
-
-.main{
+.main-raised{
 	margin-top : 80px;
+	position: relative;
+	background: #ffffff
 }

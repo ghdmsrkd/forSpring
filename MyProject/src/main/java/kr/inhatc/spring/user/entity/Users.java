@@ -17,7 +17,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class Users {
-	
 	@Id
 	@Column(name ="USER_ID")
 	private String id;
