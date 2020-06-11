@@ -44,6 +44,7 @@ public class UserController {
 	
 	@RequestMapping(value= "/user/userInsert",method=RequestMethod.POST)
 	public String userInsert(Users user) {
+		System.out.println("유저 가입 : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+user.getName());
 		userService.saveUsers(user);
 		return "redirect:/user/userList";
 	 } 
