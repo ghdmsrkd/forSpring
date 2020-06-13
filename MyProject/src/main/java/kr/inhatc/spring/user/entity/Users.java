@@ -23,10 +23,16 @@ public class Users {
 	private String pw;
 	private String name;
 	private String email;
-
+	
+	private String school;
+	private String department;
+	private String grade;
+	
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(insertable = false, updatable = false,columnDefinition = "date default sysdate")
+	@Column(insertable = false, updatable = false, columnDefinition = "date default sysdate")
 	private Date joinDate;
+	
+	@Column(insertable = false, columnDefinition = "char(1) default 'Y'")
 	private String enabled;
 	private String role;
 	

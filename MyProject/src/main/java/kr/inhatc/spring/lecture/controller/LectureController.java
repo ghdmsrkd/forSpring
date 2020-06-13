@@ -57,8 +57,8 @@ public class LectureController {
 	
 	@RequestMapping(value = "lecture/lectureRegist", method=RequestMethod.POST)
 	public String lectureRegist(Lecture lecture) {
-		//System.out.println("lecture.getLecContent() : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+lecture.getLecTitle());
-		//System.out.println("lecture.getLecContent() : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+lecture.getLecContent());
+		//System.out.println("lecture.getLecContent() : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+lecture.getLecTitle());
+		//System.out.println("lecture.getLecContent() : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+lecture.getLecContent());
 		
 		lectureService.saveLecture(lecture);
 		return "lecture/lectureRegist";

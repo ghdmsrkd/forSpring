@@ -39,7 +39,7 @@ public class UserController {
 	
 	@RequestMapping(value= "/user/userInsert",method=RequestMethod.GET)
 	public String userWrite() {
-		return "user/userWrite";
+		return "user/userSignup";
 	} 
 	
 	@RequestMapping(value= "/user/userInsert",method=RequestMethod.POST)
