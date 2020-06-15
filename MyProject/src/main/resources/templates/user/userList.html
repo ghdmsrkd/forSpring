@@ -4,53 +4,84 @@
       layout:decorator="layout/default">
 
 <!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
+<th:block layout:fragment="css">  
+  <link th:href="@{/assets/css/saidaRegistLecture.css}" rel="stylesheet" />
+
 </th:block>
 
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
+	
 </th:block>
 
 <div layout:fragment="content">
-
-<div class="container">
-		<h1> 사용자 리스트</h1>
-		<a href="/user/userInsert" class="btn btn-primary">사용자등록</a>
-		<table class="table table-striped">
-			<colgroup>
-				<col width="10%"/>
-				<col width="10%"/>
-				<col width="20%"/>
-				<col width="20%"/>
-				<col width="20%"/>
-				<col width="20%"/>
-			</colgroup>
-			<thead>
-				<th scope="col">아이디</th>
-				<th scope="col">패스워드</th>
-				<th scope="col">이름</th>
-				<th scope="col">이메일</th>
-				<th scope="col">권한</th>
-				<th scope="col">가입일</th>
-			</thead>
-			<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
-				<td>
-					<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text="${vo.id}"></a>
-				</td>
-				
-				<td th:text="${vo.pw}"></td>
-				<td th:text="${vo.name}"></td>
-				<td th:text="${vo.email}"></td>
-				<td th:text="${vo.role}"></td>
-				<td th:text="${vo.joinDate}"></td>
-			</tr>
-			<tr th:unless="${#lists.size(list)} >0">
-				<td colspan="6" class="text-center">조회된 결과가 없습니다.</td>
-			</tr>
-		</table>
+	<div id="page-wrapper">
+		<!-- 사이드바 -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="/user/userList">회원 관리</a></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/user/userList">전체 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">video_label</i><a href="">강사 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">학생 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">...</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">...</a></span></li>
+			</ul>
+		</div>
+		<!-- /사이드바 -->
+	
+		<!-- 본문 -->
+		<div id="page-content-wrapper">
+			<div class="main-raised">
+				<div class="container">
+					<div class="section text-center">
+						<h2 class="title">전체 회원 리스트</h2>
+						<span class="description">전체 회원의 리스트입니다!</span>
+					</div>
+				</div>
+	
+				<div class="container">
+					<div class="section text-center">
+						<a href="/user/userInsert" class="btn btn-info pull-right">사용자등록</a>
+						<table class="table table-striped">
+							<colgroup>
+								<col width="10%"/>
+								<col width="10%"/>
+								<col width="20%"/>
+								<col width="20%"/>
+								<col width="20%"/>
+								<col width="20%"/>
+							</colgroup>
+							<thead>
+								<th scope="col">아이디</th>
+								<!-- <th scope="col">패스워드</th> -->
+								<th scope="col">이름</th>
+								<th scope="col">이메일</th>
+								<th scope="col">권한</th>
+								<th scope="col">가입일</th>
+							</thead>
+							<tr th:if="${#lists.size(list)} > 0" th:each="vo : ${list}">
+								<td>
+									<a href="/user/userDetail/" th:attrappend="href=${vo.id}" th:text="${vo.id}"></a>
+								</td>
+								
+								<!-- <td th:text="${vo.pw}"></td> -->
+								<td th:text="${vo.name}"></td>
+								<td th:text="${vo.email}"></td>
+								<td th:text="${vo.role}"></td>
+								<td th:text="${vo.joinDate}"></td>
+							</tr>
+							<tr th:unless="${#lists.size(list)} >0">
+								<td colspan="6" class="text-center">조회된 결과가 없습니다.</td>
+							</tr>
+						</table>
+					</div>
+				</div>		
+			</div>
+		</div>
 		
 	</div>
-
 </div>
-</html>
 
+
+
+</html>

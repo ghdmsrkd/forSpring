@@ -5,6 +5,7 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,8 @@ import kr.inhatc.spring.user.service.UserService;
 public class UserController {
 	
 	private Logger log = LoggerFactory.getLogger(this.getClass());
+	
+	private PasswordEncoder encoder;
 	
 	@Autowired
 	private UserService userService;
@@ -44,8 +47,15 @@ public class UserController {
 	
 	@RequestMapping(value= "/user/userInsert",method=RequestMethod.POST)
 	public String userInsert(Users user) {
-		System.out.println("유저 가입 : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+user.getName());
-		userService.saveUsers(user);
+		if(user != null) {
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> 페스워드 인코딩 전" + user.getPw());
+			String pw = encoder.encode(user.getPw());
+			System.out.println(">>>>>>>>>>>>>>>>>>>>>>>> 페스워드 인코딩 후" + pw);
+			user.setPw(pw);
+			System.out.println("유저 가입 : >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+user.getName());
+			userService.saveUsers(user);
+		}
+		
 		return "redirect:/user/userList";
 	 } 
 

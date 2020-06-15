@@ -4,57 +4,81 @@
       layout:decorator="layout/default">
 
 <!-- index.html 고유 CSS 추가 -->
-<th:block layout:fragment="css">
+<th:block layout:fragment="css">  
+  <link th:href="@{/assets/css/saidaRegistLecture.css}" rel="stylesheet" />
+
 </th:block>
 
 <!-- index.html 고유 스크립트 추가 -->
 <th:block layout:fragment="script">
+	
 </th:block>
 
 <div layout:fragment="content">
-	<div class="container">
-		<form id="frm" role="form" th:method="POST" th:action="'/user/userUpdate/'+${user.id}">
-			<h2> 사용자 등록 </h2>
-			<table class="table table-striped">
-				
-				<tr>
-					
-					<td>아이디</td>
-					<td><input class="form-control" type="text" id ="id" name ="id" th:value="${user.id}" disabled="disabled"></td>
-					
-				</tr>
-				<tr>
-					
-					<td>패스워드</td>
-					<td><input class="form-control" type="text" id ="pw" name ="pw"th:value="${user.pw}"></td>
-					
-				</tr>
-				<tr>
-					
-					<td>이름</td>
-					<td><input class="form-control" type="text" id ="name" name ="name"th:value="${user.name}"></td>
-					
-				</tr>
-				<tr>
-					
-					<td>이메일</td>
-					<td><input class="form-control" type="text" id ="email" name ="email"th:value="${user.email}"></td>
-					
-				</tr>
-				<tr>
-					
-					<td>권한</td>
-					<td><input class="form-control" type="text" id ="role" name ="role"th:value="${user.role}"></td>
-					
-				</tr>
-			</table>
-			<a href="/user/userList" class="btn btn-primary">목록으로</a>
-			<input type = "submit" id = "submit" value = "수정하기" class="btn btn-warning" >			
-			<a href="/user/userDelete/" th:attrappend="href=${user.id}" class="btn btn-danger">삭제하기</a>
+	<div id="page-wrapper">
+		<!-- 사이드바 -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="/user/userList">회원 관리</a></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/user/userList">전체 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">video_label</i><a href="">강사 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">학생 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">...</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">...</a></span></li>
+			</ul>
+		</div>
+		<!-- /사이드바 -->
+	
+		<!-- 본문 -->
+		<div id="page-content-wrapper">
+			<div class="main-raised">
+				<div class="container">
+					<div class="section text-center">
+						<h2 th:text="${user.id}+'님의  회원 정보 입니다.'" class="title"></h2>
+						<span class="description">회원님의 세부 정보 입니다!</span>
+					</div>
+				</div>
+	
+				<div class="container">
+					<div class="section text-center">
+						<form id="frm" role="form" th:method="POST" th:action="'/user/userUpdate/'+${user.id}">
+							<table class="table table-striped">
+							<tr>
+								<td>아이디</td>
+								<td><input class="form-control" type="text" id ="id" name ="id" th:value="${user.id}" disabled="disabled"></td>
+							</tr>
+							<tr>
+								<td>패스워드</td>
+								<td><input class="form-control" type="text" id ="pw" name ="pw"th:value="${user.pw}"></td>
+							</tr>
+							<tr>
+								<td>이름</td>
+								<td><input class="form-control" type="text" id ="name" name ="name"th:value="${user.name}"></td>
+								
+							</tr>
+							<tr>
+								<td>이메일</td>
+								<td><input class="form-control" type="text" id ="email" name ="email"th:value="${user.email}"></td>
+								
+							</tr>
+							<tr>
+								<td>권한</td>
+								<td><input class="form-control" type="text" id ="role" name ="role"th:value="${user.role}"></td>
+							</tr>
+						</table>
+						<a href="/user/userList" class="btn btn-primary">목록으로</a>
+						<input type = "submit" id = "submit" value = "수정하기" class="btn btn-warning" >			
+						<a href="/user/userDelete/" th:attrappend="href=${user.id}" class="btn btn-danger">삭제하기</a>
 
-		</form>
-			
+					</form>
+					</div>
+				</div>		
+			</div>
+		</div>
+		
 	</div>
-
 </div>
+
+
+
 </html>
