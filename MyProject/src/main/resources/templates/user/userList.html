@@ -19,11 +19,11 @@
 		<!-- 사이드바 -->
 		<div id="sidebar-wrapper">
 			<ul class="sidebar-nav">
-				<li class="sidebar-brand"><a href="/user/userList">회원 관리</a></li>
-				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/user/userList">전체 리스트</a></span></li>
-				<li><span class="input-group-text"><i class="material-icons">video_label</i><a href="">강사 리스트</a></span></li>
-				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">학생 리스트</a></span></li>
-				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">...</a></span></li>
+				<li class="sidebar-brand"><a href="/user/userList/all">회원 관리</a></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/user/userList/all">전체 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">video_label</i><a href="/user/userList/ROLE_TEACHER">강사 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/user/userList/ROLE_STUDENT">학생 리스트</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/user/userList/ROLE_ADMIN">관리자 리스트</a></span></li>
 				<li><span class="input-group-text"><i class="material-icons">article</i><a href="">...</a></span></li>
 			</ul>
 		</div>
@@ -31,17 +31,22 @@
 	
 		<!-- 본문 -->
 		<div id="page-content-wrapper">
-			<div class="main-raised">
+			<!-- 점보트론 -->
+			<div class="page-header header-filter jumbo-main" data-parallax="true"
+				style="background-image: url('../../../assets/img/city.jpg')">
 				<div class="container">
 					<div class="section text-center">
-						<h2 class="title">전체 회원 리스트</h2>
-						<span class="description">전체 회원의 리스트입니다!</span>
+						<h2 class="title">회원 리스트</h2>
+						<h4>회원의 리스트입니다!</h4>
 					</div>
 				</div>
-	
+			</div>
+			<div class="main-raised">
+				
 				<div class="container">
 					<div class="section text-center">
-						<a href="/user/userInsert" class="btn btn-info pull-right">사용자등록</a>
+						<!-- 
+						<a href="/user/userInsert" class="btn btn-info pull-right">사용자등록</a> -->
 						<table class="table table-striped">
 							<colgroup>
 								<col width="10%"/>

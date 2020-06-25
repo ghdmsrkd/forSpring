@@ -11,8 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
-
+import kr.inhatc.spring.lecture.entity.Lecture;
 import kr.inhatc.spring.user.entity.Users;
 import kr.inhatc.spring.user.service.UserService;
 
@@ -33,11 +34,20 @@ public class UserController {
 	
 	// GET(read) , POST(create) ,PUT(update) , DELETE(delete)
 	
-	@RequestMapping(value= "/user/userList",method=RequestMethod.GET)
-	public String userList(Model model ) {
-		List<Users> list = userService.userList();
-		model.addAttribute("list",list);
-		return "user/userList";
+	@RequestMapping(value= "/user/userList/{role}",method=RequestMethod.GET)
+	public String userList(@PathVariable("role")String role, Model model) {
+		System.out.println("========================="+role);
+		
+		if(role.equals("all")) {
+			List<Users> list = userService.userList();
+			model.addAttribute("list",list);
+			return "user/userList";
+		} else {
+			List<Users> list = userService.userList(role);
+			model.addAttribute("list",list);
+			return "user/userList";
+		}
+
 	} 
 	
 	@RequestMapping(value= "/user/userInsert",method=RequestMethod.GET)
@@ -58,7 +68,7 @@ public class UserController {
 		
 		return "redirect:/user/userList";
 	 } 
-
+	
 	@RequestMapping(value= "/user/userDetail/{id}",method=RequestMethod.GET)
 	public String userDetail(@PathVariable("id") String id, Model model) {
 		Users user = userService.userDtail(id);

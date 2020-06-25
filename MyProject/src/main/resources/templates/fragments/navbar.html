@@ -1,12 +1,16 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http:www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/default">
 
-<header th:fragment="navbarFragment">
+<div th:fragment="navbarFragment">
 	<nav class="navbar fixed-top navbar-expand-lg" color-on-scroll="0" id="sectionsNav">
     <div class="container">
       <div class="navbar-translate">
-        <a class="navbar-brand" href="/lecture/">
-          K-sAiDa </a>
+        <a  class="navbar-brand" href="/lecture/">
+          D.I.Y </a>
+          
         <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false" aria-label="Toggle navigation">
           <span class="sr-only">Toggle navigation</span>
           <span class="navbar-toggler-icon"></span>
@@ -16,6 +20,7 @@
       </div>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav ml-auto">
+        <!-- 
           <li class="dropdown nav-item">
             <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
               <i class="material-icons">apps</i> 과정
@@ -32,38 +37,71 @@
               </a>
             </div>
           </li>
-          <li class="nav-item">
+           -->
+           
+          <li sec:authorize="hasRole('ROLE_STUDENT') || hasRole('ROLE_ADMIN') || hasRole('ROLE_TEACHER')" class="nav-item">
+            <a class="nav-link" href="/course/courseList/all/" >
+              <i class="material-icons">unarchive</i> 전체강좌
+            </a>
+          </li>
+          
+          <li sec:authorize="hasRole('ROLE_STUDENT') || hasRole('ROLE_ADMIN') || hasRole('ROLE_TEACHER')" class="nav-item">
+            <a class="nav-link" href="/course/courseMyList" >
+              <i class="material-icons">unarchive</i> 내강좌
+            </a>
+          </li>
+          
+          <li sec:authorize="isAuthenticated()" class="nav-item">
             <a class="nav-link" href="https://k-saida.tk/" >
               <i class="material-icons">unarchive</i> Scratch 3.0
             </a>
           </li>
-          <li class="nav-item">
+          
+          
+          
+          <!-- 
+          <li sec:authorize="hasRole('ROLE_ADMIN') || hasRole('ROLE_TEACHER')" class="nav-item">
+            <a class="nav-link" href="/course/courseRegistForm" >
+              <i class="material-icons">unarchive</i> 강좌등록
+            </a>
+          </li>
+          
+          <li sec:authorize="hasRole('ROLE_ADMIN') || hasRole('ROLE_TEACHER')" class="nav-item">
             <a class="nav-link" href="/lecture/lectureRegistForm" >
               <i class="material-icons">unarchive</i> 강의등록
             </a>
           </li>
+           -->
           
-          <li class="nav-item">
-            <a class="nav-link" href="/user/userList" >
+          <li sec:authorize="hasRole('ROLE_ADMIN')" class="nav-item" >
+            <a class="nav-link" href="/user/userList/all" >
               <i class="material-icons">face</i> 회원관리
             </a>
           </li>
           
-          <li class="nav-item">
+          <li sec:authorize="!isAuthenticated()" class="nav-item">
             <a class="nav-link" href="/login/login" >
-              <i class="material-icons">lock</i> 로그인
+              <i class="material-icons">login</i> 로그인
             </a>
           </li>
           
-          <li class="nav-item">
+          <li sec:authorize="!isAuthenticated()" class="nav-item">
+          
             <a class="nav-link" href="/login/signupForm" >
-              <i class="material-icons">lock</i> 회원가입
+              <i class="material-icons">account_box</i> 회원가입
             </a>
           </li>
           
-          <li class="nav-item">
+          <li sec:authorize="isAuthenticated()" class="nav-item">
             <a class="nav-link" href="/login/logout" >
-              <i class="material-icons">lock</i> 로그아웃
+              <i class="material-icons">lock_open</i> 로그아웃
+            </a>
+          </li>
+          
+          <li sec:authorize="isAuthenticated()" class="nav-item">
+            <a class="nav-link" href="/login/logout" >
+              <i class="material-icons icon icon-success">done</i>
+              <span sec:authentication="principal.username"></span>
             </a>
           </li>
 
@@ -86,6 +124,6 @@
       </div>
     </div>
   </nav>
-</header>
+</div>
 
 </html>

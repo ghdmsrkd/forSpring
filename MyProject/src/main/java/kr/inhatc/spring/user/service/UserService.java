@@ -13,5 +13,6 @@ public interface UserService {
 	Users userDtail(String id);
 
 	void userDelete(String id);
-
+	
+	List<Users> userList(String role);
 }
