@@ -18,6 +18,7 @@ import org.springframework.web.servlet.ModelAndView;
 import kr.inhatc.spring.course.entity.Course;
 import kr.inhatc.spring.course.service.CourseService;
 import kr.inhatc.spring.lecture.entity.Lecture;
+import kr.inhatc.spring.lecture.entity.LectureContent;
 import kr.inhatc.spring.lecture.service.LectureService;
 import kr.inhatc.spring.login.security.SecurityUser;
 import kr.inhatc.spring.user.entity.Users;
@@ -41,11 +42,9 @@ public class LectureController {
 	
 	@RequestMapping("/lecture/")
 	public String index( @AuthenticationPrincipal SecurityUser priciUser, Model model) {
-		if(priciUser != null) {
-			//System.out.println("++++++++++++++++++++++++++++++++++++++"+priciUser.getUsername());
-			//Users user = userService.userDtail(priciUser.getUsername());
-			//model.addAttribute("logined",user);
-		}
+		List<Course> course =  courseService.getCourseListByRownum(4);
+		model.addAttribute("course", course);
+		System.out.println("++++++++++++++++++++++++++++ 여기까지는 된당");
 		return "lecture/index";
 		
 		
@@ -54,20 +53,24 @@ public class LectureController {
 	@RequestMapping(value = "lecture/lectureRegistForm/{id}", method = RequestMethod.GET)
 	public String lectureRegist(@PathVariable("id") Long id, Model model) {
 		model.addAttribute("courseId", id);
-		System.out.println("++++++++++++++++++"+id);
+		//System.out.println("++++++++++++++++++"+id);
 		return "lecture/lectureRegist";
 	}
 	
 	@RequestMapping(value = "lecture/lectureRegist", method=RequestMethod.POST)
-	public String lectureRegist(Lecture lecture, Model model) {
+	public String lectureRegist(Lecture lecture, LectureContent lectureContent, Model model) {
 		
 		Long id = lecture.getCourse().getCouId(); 
 		Course course = courseService.getCourse(id);
 		
 		lecture.setCourse(course);	
 		course.addLecture(lecture);
-
+		lectureContent.setLecture(lecture);
+		
+		//System.out.println("+++++++++++++++++++++++lectureContent"+lectureContent.getLecContent());
+		
 		lectureService.saveLecture(lecture);
+		lectureService.saveLectureContent(lectureContent);
 		//model.addAttribute("courseId", course.getCouId());
 		return "redirect:lectureList/"+course.getCouId();
 	}
@@ -76,9 +79,12 @@ public class LectureController {
 	public String lectureShow(@PathVariable("id") Long id, Model model) {
 		
 		Lecture lecture = lectureService.lectureShow(id);
-		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+lecture.getLecContent());
+		System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+lecture.getCourse().getCouId());
+		List<Lecture> lectureList = lectureService.getListLectureByCourse(lecture.getCourse().getCouId());
+		LectureContent lectureContent = lectureService.lectureContentShow(id);
 		model.addAttribute("lecture", lecture);
-		
+		model.addAttribute("lectureList", lectureList);
+		model.addAttribute("lectureContent", lectureContent);
 		return "lecture/lectureShow";
 	} 
 

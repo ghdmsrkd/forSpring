@@ -6,8 +6,7 @@
 
 <!-- index.html 고유 CSS 추가 -->
 <th:block layout:fragment="css">
-
-
+	<link th:href="@{/assets/css/cards.css}" rel="stylesheet" />
 </th:block>
 
 <!-- index.html 고유 스크립트 추가 -->
@@ -19,7 +18,7 @@
 <div layout:fragment="content">
 	<!-- 점보트론 -->
 	<div class="page-header header-filter" data-parallax="true"
-		style="background-image: url('../assets/img/profile_city.jpg')">
+		style="background-image: url('../assets/img/bg7.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
@@ -29,7 +28,7 @@
 						AI를 좀더 쉽게 학습 할수 있는 한국형 교육 플렛폼 입니다.</br> 
 						동영상 강의를 듣고 scratch 3.0을 이용해 실습 해보세요.
 					</h4>
-					<br> <a href="https://www.youtube.com" 
+					<br> <a href="https://k-saida.tk/" 
 						class="btn btn-danger btn-raised btn-lg"> <i
 						class="fa fa-play"></i> 바로 시작하기
 					</a>
@@ -63,9 +62,38 @@
 				</div>
 			</div>
 
+			<div class="section text-center">
+				<h2 class="title">인기있는 강좌 바로보기!</h2>
+				<div class="features">
+					<!-- 조회수 순의 강좌 리스트를 보여준다. 하지만 아직 조회수를 구현 안해서 index 상위 4개 만.... -->
+					<div  class="row">
+
+						<div class="col-md-3" th:if="${#lists.size(course)} > 0" th:each="co, index : ${course}">
+							<div class="card">
+							  <img src="../assets/img/card_img" th:attrappend="src=${index.index}+.jpg" class="img-responsive card-img" alt="card img" />
+							  <h3 class="card-title" th:text="${co.couTitle}">머신러닝 기초</h3>
+							  <div class="card-content">
+							  	<p class="description" th:text="${co.couOutline}">이 강좌에서는 머신러닝 기초에 대해 배우게 됩니다.</p>
+							  </div>
+							  <p><a href="/lecture/lectureList/" th:attrappend="href=${co.couId}"><button class="card-button">보러가기</button></a></p>
+							</div>
+						</div>
+						
+						<div th:unless="${course != null}">
+							<span colspan="6" class="text-center">이상하다 강좌가 없을리가 없는데...</span>
+						</div>
+					</div>
+					
+					<!-- 강좌가 없을리가 없지만 혹시라도.... -->
+					
+					
+				</div>
+			</div>
+
 			<!-- 메인 컨텐츠2 -->
 			<div class="section text-center">
 				<div class="features">
+				
 					<div class="row">
 						<div class="col-md-4">
 							<div class="info">
@@ -103,42 +131,7 @@
 					</div>
 				</div>
 			</div>
-
-			<!-- 메인 컨텐츠4 -->
-			<!-- 
-			<div class="section section-contacts">
-				<div class="row">
-					<div class="col-md-8 ml-auto mr-auto">
-						<h2 class="text-center title">sign in!</h2>
-						<h4 class="text-center description">로그인후 저희의 프렛폼을 이용하시면 당신의
-							학습 페턴을 분석하여, 효율적인 학습 방법을 제공합니다.</h4>
-						<form class="contact-form">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="bmd-label-floating">Your ID</label> <input
-											type="text" class="form-control">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<label class="bmd-label-floating">Your password</label> <input
-											type="password" class="form-control">
-									</div>
-								</div>
-							</div>
-
-							<div class="row">
-								<div class="col-md-4 ml-auto mr-auto text-center">
-									<button class="btn btn-info btn-raised btn-round">로그인
-									</button>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-				 -->
-			</div>
+			
 		</div>
 	</div>
 </div>
