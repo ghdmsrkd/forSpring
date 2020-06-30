@@ -18,13 +18,13 @@
 <div layout:fragment="content">
 	<!-- 점보트론 -->
 	<div class="page-header header-filter" data-parallax="true"
-		style="background-image: url('../assets/img/bg7.jpg')">
+		style="background-image: url('../assets/img/DIY.jpg')">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-6">
 					<h1 class="title">D.I.Y</h1>
 					<h4>
-						Deep AI Yourself로 AI모델을 직접 만들어 보고 </br> 
+						Deep AI Yourself의 약자로 AI모델을 직접 만들어 보고 </br> 
 						AI를 좀더 쉽게 학습 할수 있는 한국형 교육 플렛폼 입니다.</br> 
 						동영상 강의를 듣고 scratch 3.0을 이용해 실습 해보세요.
 					</h4>
@@ -47,16 +47,16 @@
 					<div class="col-md-10 ml-auto mr-auto">
 						<h2 class="title">D.I.Y란 무엇일까?</h2>
 						<h5 class="description">
-							최근 4차 산업혁명과 관련하여 인공지능 및 빅데이터 기술이 각광받고 있다. 이에 따라 다양한 IT 기업 및 단체에서 학생들을 대상으로 교육할 수 있도록 다양한 
-							교육 플랫폼들을 출시하며 시장을 선점하기 위해 다양한 노력을 펼치고 있는 실정이다.
+							최근 4차 산업혁명과 관련하여 인공지능 및 빅데이터 기술이 각광받고 있습니다. 이에 따라 다양한 IT 기업 및 단체에서 학생들을 대상으로 교육할 수 있도록 다양한 
+							교육 플랫폼들을 출시하며 시장을 선점하기 위해 다양한 노력을 펼치고 있는 상황입니다.
 							하지만, 대부분의 인공지능 & 빅데이터 관련 교육 플랫폼들은 너무 이론에 입각하여 학생들의 눈높이에 맞지 않는 내용을 싣거나, 실습 위주이지만 인공지능 
 							및 빅데이터의 동작 원리를 살펴볼 수 없는 블랙박스 형태로 서비스를 제공하고 있어 학생들이 해당 플랫폼을 사용하여 인공지능 & 빅데이터 관련 내용을 습득하기에 
-							많은 애로사항이 따르고 있다.
+							많은 애로사항이 따르고 있습니다.
 							하여, 해당 프로젝트에서는 학생들이 단계적으로 인공지능 & 빅데이터 기술을 습득하여 자신의 것으로 만드는 것뿐 아니라 해당 기술의 원리를 이해하여 
-							자신이 원하는 곳에 응용할 수 있도록 기존의 단점들을 보완한 한국형 스마트 인공지능 & 빅데이터 교육 플랫폼 프로젝트를 제안하고자 한다.
+							자신이 원하는 곳에 응용할 수 있도록 기존의 단점들을 보완한 한국형 스마트 인공지능 & 빅데이터 교육 플랫폼 프로젝트를 제안합니다.
 							특히 해당 프로젝트에서는 기존의 화이트 박스 시스템이거나 블랙박스 시스템으로 인해 학습에서의 완급 조절이 어려운 부분을 그레이 박스 시스템을 
 							채택하여 조절할 수 있도록 할 것이며 스크래치 3.0 기반의 플랫폼을 구축하여 학생들이 해당 플랫폼을 사용하여 기초를 습득하고 기본 제공 블록을 통해 
-							원리를 터득한 후 패키징 된 블록들을 사용하여 보다 쉽게 응용할 수 있도록 다양한 편의 기능을 제공할 것이다.
+							원리를 터득한 후 패키징 된 블록들을 사용하여 보다 쉽게 응용할 수 있도록 다양한 편의 기능을 제공할 것입니다.
 						</h5>
 					</div>
 				</div>
@@ -71,10 +71,15 @@
 						<div class="col-md-3" th:if="${#lists.size(course)} > 0" th:each="co, index : ${course}">
 							<div class="card">
 							  <img src="../assets/img/card_img" th:attrappend="src=${index.index}+.jpg" class="img-responsive card-img" alt="card img" />
-							  <h3 class="card-title" th:text="${co.couTitle}">머신러닝 기초</h3>
-							  <div class="card-content">
-							  	<p class="description" th:text="${co.couOutline}">이 강좌에서는 머신러닝 기초에 대해 배우게 됩니다.</p>
+							  
+							  <div class="card-title-container">
+							  	<h3 class="card-title" th:text="${co.couTitle}"></h3>
 							  </div>
+							  
+							  <div class="card-content">
+							  	<p class="description" th:text="${co.couOutline}"></p>
+							  </div>
+							  
 							  <p><a href="/lecture/lectureList/" th:attrappend="href=${co.couId}"><button class="card-button">보러가기</button></a></p>
 							</div>
 						</div>
@@ -92,6 +97,7 @@
 
 			<!-- 메인 컨텐츠2 -->
 			<div class="section text-center">
+				<h2 class="title">우리는 이런 것을 배워요!</h2>
 				<div class="features">
 				
 					<div class="row">
@@ -102,8 +108,8 @@
 								</div>
 								<h4 class="info-title">AI</h4>
 								<p>인공지능은 인간의 지능을 갖고 있는 기능을 갖춘 컴퓨터 시스템이며, 인간의 지능을 기계 등에 인공적으로
-									시연한 것이다. 일반적으로 범용 컴퓨터에 적용한다고 가정한다. 이 용어는 또한 그와 같은 지능을 만들 수 있는
-									방법론이나 실현 가능성 등을 연구하는 과학 분야를 지칭하기도 한다.</p>
+									시연한 것입니다. 일반적으로 범용 컴퓨터에 적용한다고 가정합니다. 이 용어는 또한 그와 같은 지능을 만들 수 있는
+									방법론이나 실현 가능성 등을 연구하는 과학 분야를 지칭하기도 합니다.</p>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -113,8 +119,8 @@
 								</div>
 								<h4 class="info-title">Big Data</h4>
 								<p>빅 데이터란 기존 데이터베이스 관리도구의 능력을 넘어서는 대량의 정형 또는 심지어 데이터베이스 형태가
-									아닌 비정형의 데이터 집합조차 포함한 데이터로부터 가치를 추출하고 결과를 분석하는 기술이다. 즉, 기존의 데이터
-									베이스로는 처리하기 어려울 정도로 방대한 양의 데이터를 의미한다.</p>
+									아닌 비정형의 데이터 집합조차 포함한 데이터로부터 가치를 추출하고 결과를 분석하는 기술입니다. 즉, 기존의 데이터
+									베이스로는 처리하기 어려울 정도로 방대한 양의 데이터를 의미합니다.</p>
 							</div>
 						</div>
 						<div class="col-md-4">
@@ -124,8 +130,8 @@
 								</div>
 								<h4 class="info-title">Embadded</h4>
 								<p>임베디드 시스템은 기계나 기타 제어가 필요한 시스템에 대해, 제어를 위한 특정 기능을 수행하는 컴퓨터
-									시스템으로 장치 내에 존재하는 전자 시스템이다. 즉, 임베디드 시스템은 전체 장치의 일부분으로 구성되며 제어가
-									필요한 시스템을 위한 두뇌 역할을 하는 특정 목적의 컴퓨터 시스템이다.</p>
+									시스템으로 장치 내에 존재하는 전자 시스템입니다. 즉, 임베디드 시스템은 전체 장치의 일부분으로 구성되며 제어가
+									필요한 시스템을 위한 두뇌 역할을 하는 특정 목적의 컴퓨터 시스템입니다.</p>
 							</div>
 						</div>
 					</div>
