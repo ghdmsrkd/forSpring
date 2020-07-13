@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http:www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">  
+  	<link th:href="@{/assets/css/saidaRegistLecture.css}" rel="stylesheet" />
+	
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+	
+</th:block>
+
+<div layout:fragment="content">
+	
+	
+	<div id="page-wrapper">
+		<!-- 사이드바 -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="">강좌목록</a></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/course/courseList/all">전체 강좌</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">video_label</i><a href="/course/courseMyList">나의강좌</a></span></li>
+			</ul>
+		</div>
+		<!-- /사이드바 -->
+	
+		<!-- 본문 -->
+		<div id="page-content-wrapper">
+			<!-- 점보트론 -->
+			<div class="page-header header-filter jumbo-main" data-parallax="true"
+				style="background-image: url('../../../assets/img/city.jpg')">
+				<div class="container">
+					<div class="section text-center">
+						<h2 class="title">강좌 리스트</h2>
+						<h4>강좌 리스트입니다!</h4>
+					</div>
+				</div>
+			</div>
+		
+		
+			<div class="main-raised">
+				<div class="container">
+					<div class="section text-center">
+						<a sec:authorize="hasRole('ROLE_ADMIN') || hasRole('ROLE_TEACHER')" 
+							href="/course/courseRegistForm/" th:attrappend="href=${userId}" class="btn btn-info pull-right">강좌 등록</a>
+						
+						<table class="table table-striped">
+							<colgroup>
+								<col width="10%"/>
+								<col width="20%"/>
+								<col width="20%"/>
+								<col width="20%"/>
+								<col width="10%"/>
+							</colgroup>
+							<thead>
+								<th scope="col">강좌번호</th>
+								<th scope="col">강좌명</th>
+								<th scope="col">개요</th>
+								<th scope="col">등록일</th>
+								<th scope="col">강사</th>
+							</thead>
+							
+							<tr th:if="${#lists.size(course)} > 0" th:each="vo : ${course}">
+								<td th:text="${vo.couId}"></td>
+								<td>
+									<a href="/lecture/lectureList/" th:attrappend="href=${vo.couId}" th:text="${vo.couTitle}"></a>
+								</td>
+
+								<td th:text="${vo.couOutline}"></td>
+								<td th:text="${vo.couResgistDate}"></td>
+								<td th:text="${vo.user.id}"></td>
+							</tr>
+							<tr th:unless="${course != null}">
+								<td colspan="6" class="text-center">조회된 결과가 없습니다.</td>
+							</tr>
+							  
+							  
+						</table>
+					</div>
+				</div>		
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+
+</html>

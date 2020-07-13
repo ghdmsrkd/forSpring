@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">  
+  <link th:href="@{/assets/css/saidaRegistLecture.css}" rel="stylesheet" />
+  
+
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+	
+	
+</th:block>
+
+<div layout:fragment="content">
+	<div id="page-wrapper">
+		 <!-- 사이드바 -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="">강좌목록</a></li>
+				<li><span class="input-group-text"><i class="material-icons">article</i><a href="/course/courseList/all">전체 강좌</a></span></li>
+				<li><span class="input-group-text"><i class="material-icons">video_label</i><a href="/course/courseMyList">나의강좌</a></span></li>
+			</ul>
+		</div>
+		<!-- /사이드바 -->
+
+  		<!-- 본문 -->
+		<div id="page-content-wrapper">
+			<!-- 점보트론 -->
+			<div class="page-header header-filter jumbo-main" data-parallax="true"
+				style="background-image: url('../../../assets/img/city.jpg')">
+				<div class="container">
+					<div class="section text-center">
+						<h2 class="title">강좌 등록</h2>
+						<h4>당신의 강좌를 개설해주세요!</h4>
+					</div>
+				</div>
+			</div>
+			<div class="container-fluid">
+				<div class="main-raised">
+									
+					<div class="container">
+						<div class="section text-center" style="margin-right:20%; margin-left:20%; ">
+							<form role="form" method="POST" action="/course/courseRegist"  enctype="multipart/form-data" onsubmit="postForm()">
+								
+								<label>강좌명</label>
+								<input name="couTitle" type="text" class="form-control">
+								<br>
+								<label>강의 개요</label>
+								<textarea class="form-control" rows="3" name="couOutline" style="width: 100%; "></textarea>
+								
+								<input class="btn btn-info" id="subBtn" type="submit" value="강의등록" style="float: right;"/>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /본문 -->
+	</div>
+</div>
+
+	
+	
+	
+
+</html>

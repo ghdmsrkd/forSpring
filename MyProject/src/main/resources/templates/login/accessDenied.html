@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">  
+  <link th:href="@{/assets/css/saidaRegistLecture.css}" rel="stylesheet" />
+
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+	
+</th:block>
+
+<div layout:fragment="content">
+	<div class="main-raised">
+		<div class="container">
+			<div class="section text-center">
+				<h2 class="title">접근 권한이 업습니다.</h2>
+				<span class="description">당신의 권한을 확인해주세요!</span>
+			</div>
+		</div>	
+	</div>
+</div>
+
+
+
+</html>

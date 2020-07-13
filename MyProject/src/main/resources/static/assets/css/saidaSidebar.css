@@ -1,0 +1,66 @@
+/* 사이드바 래퍼 스타일 */
+  
+  #page-wrapper {
+    padding-left: 250px;
+  }
+  
+  #sidebar-wrapper {
+    position: fixed;
+    width: 250px;
+    height: 100%;
+    margin-top:70px;
+    margin-left: -250px;
+    background: #FFFFFF;
+    overflow-x: hidden;
+    overflow-y: auto;
+    box-shadow: 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
+  }
+  
+  #page-content-wrapper {
+    width: 100%;
+    padding: 20px;
+  }
+  /* 사이드바 스타일 */
+  
+  .sidebar-nav {
+    width: 250px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .sidebar-nav li {
+    text-indent: 1.5em;
+    line-height: 2.8em;
+    border-bottom: 1px solid #E6E6E6;
+  }
+  
+  .sidebar-nav li a {
+    display: block;
+    text-decoration: none;
+    color: #151515;
+  }
+  
+  .sidebar-nav li a:hover {
+    color: #BDBDBD;
+    background: rgba(255, 255, 255, 0.4);
+  }
+  
+  .sidebar-nav > .sidebar-brand {
+    font-size: 1.3em;
+    line-height: 3em;
+  }
+  .sidebar-nav > li >.input-group-text >.material-icons {
+  	font-size: 15px !important;
+  }
+  .sidebar-text > li > span > a{
+  	font-size: small;
+  }
+  .sidebar-text > li > span > i{
+  	font-size:  medium;
+  }
+  
+  
+  
+  
+  

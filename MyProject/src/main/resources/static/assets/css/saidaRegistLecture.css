@@ -1,0 +1,17 @@
+
+.main-raised{
+	margin-top : 30px;
+	//position: relative;
+	background: #ffffff
+}
+
+.lecture-form{
+	 style: width: 100%; 
+	 height : 100%; 
+	 margin: auto;
+	 padding: 70px 0;
+}
+
+.note-modal-footer{
+	height: 80px !important;
+}

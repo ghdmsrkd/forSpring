@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+
+<!-- index.html 고유 CSS 추가 -->
+<th:block layout:fragment="css">  
+  <link th:href="@{/assets/css/saidaRegistLecture.css}" rel="stylesheet" />
+</th:block>
+
+<!-- index.html 고유 스크립트 추가 -->
+<th:block layout:fragment="script">
+	
+</th:block>
+
+<div layout:fragment="content">
+	<div id="page-wrapper">
+		<!-- 사이드바 -->
+		<div id="sidebar-wrapper">
+			<ul class="sidebar-nav">
+				<li class="sidebar-brand"><a href="#">강의목록</a></li>
+				<h8 th:each="lec : ${lectureList}" class="sidebar-text">
+					<li>
+						<span class="input-group-text">
+							<i class="material-icons">video_label</i>
+							<a href="/lecture/lectureShow/" th:attrappend="href=${lec.lecId}" th:text="${lec.lecTitle}"></a>
+						</span>
+					</li>
+				</h8>
+			</ul>
+		</div>
+		<!-- /사이드바 -->
+	
+		<!-- 본문 -->
+		<div id="page-content-wrapper">
+			<div class="page-header header-filter jumbo-main" data-parallax="true"
+				style="background-image: url('../../../assets/img/city.jpg')">
+				<div class="container">
+					<div class="section text-center">
+						<h2 th:text="${lecture.lecTitle}" class="title">강의를 등록해주세요.</h2>
+						<span >강의 ID : <span th:text="${lecture.lecId}" >강의 ID</span></span>&nbsp&nbsp
+						<span >등록일 : <span th:text="${lecture.joinDate}">강의 ID</span></span>
+					</div>
+				</div>
+			</div>
+			<div class="main-raised">
+
+				<div class="container">
+					<div class="section text-center">
+						<p th:utext="${lectureContent.LecContent}"></p>
+					</div>
+				</div>		
+			</div>
+		</div>
+		
+	</div>
+</div>
+
+
+
+</html>
